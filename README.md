@@ -16,15 +16,15 @@ Virtual environments are Python's way to keep dependencies (e.g. the pygame modu
 Installation protocol:
 
 Create a virtual environment at the top level of the project directory:
-$ apt install python3.12-venv
-$ python3 -m venv venv
+- $ apt install python3.12-venv
+- $ python3 -m venv venv
 
 Activate the virtual environment:
-$ source venv/bin/activate
+- $ source venv/bin/activate
 
 Create a file called requirements.txt in the top level of the project directory with the following contents:
-pygame==2.6.1
+- pygame==2.6.1
 This tells Python that this project requires pygame version 2.6.1.
 
 Install the requirements:
-$ pip install -r requirements.txt
+- $ pip install -r requirements.txt
