@@ -1,4 +1,6 @@
 import pygame
+# in pygame, there is a base class called Sprite, to represent visual objects
+# create a CircleShape class that inherits from Sprite to represent objects in the game
 
 # Base class for game objects
 class CircleShape(pygame.sprite.Sprite):
