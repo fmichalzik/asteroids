@@ -6,6 +6,7 @@ from constants import *
 from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
+from shot import Shot
 
 def main():
     pygame.init()
@@ -19,13 +20,15 @@ def main():
     updateable = pygame.sprite.Group() # the Group class is a container that holds and manages multiple game objects. 
     drawable = pygame.sprite.Group() # we can organize our objects into various groups to track them more easily.
     asteroids = pygame.sprite.Group()
+    shots = pygame.sprite.Group()
     
 
     Player.containers = (updateable, drawable) # adds all instances of a Player to the groups
     Asteroid.containers = (asteroids, updateable, drawable) # adds all instances of a Asteroid to the groups
     AsteroidField.containers = (updateable)  # adds all instances of a AsteroidField to the groups
+    Shot.containers = (shots, updateable, drawable)
 
-    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2) # instantiate a Player object
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, shots) # instantiate a Player object
     asteroid_field = AsteroidField()
 
     dt = 0 # delta time
@@ -50,6 +53,12 @@ def main():
             if asteroid.collision(player):
                 print("Game over!")
                 exit()
+                
+            for shot in shots:
+                if shot.collision(asteroid):
+                    # asteroid.kill()
+                    asteroid.split()
+                    pygame.sprite.Sprite.kill(shot)
 
         # to re-render objects (in drawable group) on the screen each frame
         for obj in drawable:
